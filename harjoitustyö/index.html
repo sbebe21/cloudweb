@@ -35,7 +35,7 @@
     <div id="weather">Ladataan...</div>
   </div>
 
-  <script>
+<script>
     async function getWeather() {
       try {
         const url = "https://api.open-meteo.com/v1/forecast?latitude=60.1699&longitude=24.9384&current_weather=true";
@@ -48,6 +48,10 @@
           <div class="temp">${weather.temperature}°C</div>
           
         `;
+      } catch (err) {
+        document.getElementById("weather").textContent = "Virhe haettaessa säätä";
+        console.error(err);
+      }
     }
 
     getWeather();
