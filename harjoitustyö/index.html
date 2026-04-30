@@ -40,14 +40,14 @@
       try {
         const osoite = "https://api.open-meteo.com/v1/forecast?latitude=60.1699&longitude=24.9384&current_weather=true";
         const vastaus = await fetch(osoite);
-        const data = await vastaus.json();
-        const nykyinensaa = data.current_weather;
+        const data = await saatila.json();
+        const nykyinensaa = datat.current_weather;
         document.getElementById("weather").innerHTML = `
-          <div class="temp">${nykyinensaa.temperature}°C</div>
+          <div class="temp">${saa.temperature}°C</div>
         `;
-      } catch (virhe) {
+      } catch (e) {
         document.getElementById("weather").textContent = "Virhe säätä hakiessa";
-        console.error(virhe);
+        console.log(e);
       }
     }
     haesaa();
