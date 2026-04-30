@@ -48,10 +48,6 @@
           <div class="temp">${weather.temperature}°C</div>
           
         `;
-      } catch (err) {
-        document.getElementById("weather").textContent = "Virhe haettaessa säätä";
-        console.error(err);
-      }
     }
 
     getWeather();
