@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sää Helsingissä</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #D4BADE, #FAF2FC);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    h1 { margin-bottom: 10px; }
+    .temp {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Helsingin sää</h1>
+    <div id="weather">Ladataan...</div>
+  </div>
+
+  <script>
+    async function getWeather() {
+      try {
+        const url = "https://api.open-meteo.com/v1/forecast?latitude=60.1699&longitude=24.9384&current_weather=true";
+        const res = await fetch(url);
+        const data = await res.json();
+
+        const weather = data.current_weather;
+
+        document.getElementById("weather").innerHTML = `
+          <div class="temp">${weather.temperature}°C</div>
+          <div>Tuuli: ${weather.windspeed} km/h</div>
+        `;
+      } catch (err) {
+        document.getElementById("weather").textContent = "Virhe haettaessa säätä";
+        console.error(err);
+      }
+    }
+
+    getWeather();
+  </script>
+</body>
+</html>
