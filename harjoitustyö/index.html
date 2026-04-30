@@ -5,19 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sää Helsingissä</title>
   <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #D4BADE, #FAF2FC);
+      background: linear-gradient(to bottom, #87ceeb, #f0f8ff);
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 200px;
-      margin: 0;
     }
     .card {
       background: white;
       padding: 20px 30px;
       border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       text-align: center;
     }
     h1 { margin-bottom: 10px; }
@@ -44,7 +47,11 @@
 
         document.getElementById("weather").innerHTML = `
           <div class="temp">${weather.temperature}°C</div>
+          <div>Tuuli: ${weather.windspeed} km/h</div>
         `;
+      } catch (err) {
+        document.getElementById("weather").textContent = "Virhe haettaessa säätä";
+        console.error(err);
       }
     }
 
