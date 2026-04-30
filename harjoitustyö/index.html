@@ -36,25 +36,22 @@
   </div>
 
 <script>
-    async function getWeather() {
+    async function haesaa() {
       try {
-        const url = "https://api.open-meteo.com/v1/forecast?latitude=60.1699&longitude=24.9384&current_weather=true";
-        const res = await fetch(url);
-        const data = await res.json();
-
-        const weather = data.current_weather;
-
+        const osoite = "https://api.open-meteo.com/v1/forecast?latitude=60.1699&longitude=24.9384&current_weather=true";
+        const vastaus = await fetch(osoite);
+        const data = await vastaus.json();
+        const nykyinenSaa = data.current_weather;
         document.getElementById("weather").innerHTML = `
-          <div class="temp">${weather.temperature}°C</div>
-          
+          <div class="temp">${nykyinenSaa.temperature}°C</div>
         `;
-      } catch (err) {
+      } catch (virhe) {
+        // Jos jotain menee pieleen
         document.getElementById("weather").textContent = "Virhe haettaessa säätä";
-        console.error(err);
+        console.error(virhe);
       }
     }
-
-    getWeather();
+    haesaa();
   </script>
 </body>
 </html>
