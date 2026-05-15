@@ -96,12 +96,6 @@
         const response = await fetch(url);
         const data = await response.json();
 
-        if (data.cod === "404") {
-          document.getElementById("saatila").innerHTML =
-            "<p>Kaupunkia ei löytynyt.</p>";
-          return;
-        }
-
         document.getElementById("saatila").innerHTML = `
           <h2>${data.name}</h2>
 
@@ -112,15 +106,10 @@
           <div class="info">
             <p>Sää: ${data.weather[0].description}</p>
             <p>Tuuli: ${data.wind.speed} m/s</p>
-            <p>Kosteus: ${data.main.humidity}%</p>
           </div>
         `;
       }
 
-      catch (error) {
-        document.getElementById("saatila").innerHTML =
-          "<p>Jotain meni nyt vikaan.</p>";
-      }
     }
   </script>
 
