@@ -74,18 +74,18 @@
   <div class="container">
     <h1>Sääsovellus</h1>
 
-    <input type="text" id="cityInput" placeholder="Hae kaupunkia" />
+    <input type="text" id="kaupunki" placeholder="Hae kaupunkia" />
 
     <br>
 
-    <button onclick="getWeather()">Hae sää</button>
+    <button onclick="haesaa()">Hae sää</button>
 
-    <div class="weather" id="weatherResult"></div>
+    <div class="saa" id="saatila"></div>
   </div>
 
   <script>
-    async function getWeather() {
-      const city = document.getElementById("cityInput").value;
+    async function haesaa() {
+      const city = document.getElementById("kaupunki").value;
 
       const apiKey = "1810fb461a0f224e8cd5a7c5d715a8b0";
       
@@ -97,12 +97,12 @@
         const data = await response.json();
 
         if (data.cod === "404") {
-          document.getElementById("weatherResult").innerHTML =
+          document.getElementById("saatila").innerHTML =
             "<p>Kaupunkia ei löytynyt.</p>";
           return;
         }
 
-        document.getElementById("weatherResult").innerHTML = `
+        document.getElementById("saatila").innerHTML = `
           <h2>${data.name}</h2>
 
           <div class="temp">
@@ -118,7 +118,7 @@
       }
 
       catch (error) {
-        document.getElementById("weatherResult").innerHTML =
+        document.getElementById("saatila").innerHTML =
           "<p>Jotain meni nyt vikaan.</p>";
       }
     }
